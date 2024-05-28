@@ -12,6 +12,7 @@ public class Window extends JFrame {
         this.setTitle("AASTU E-Learning");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 600);
+        this.setMinimumSize(new Dimension(500, 400));
         this.setLocationRelativeTo(null);
 
         mainPanel = new JPanel(new CardLayout());
