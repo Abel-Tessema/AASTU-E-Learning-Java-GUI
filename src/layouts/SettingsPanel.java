@@ -5,14 +5,15 @@ import java.awt.*;
 
 public class SettingsPanel extends JPanel {
     public SettingsPanel() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel settingsLabel = new JLabel("Settings");
         settingsLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        this.add(settingsLabel);
+        panel.add(settingsLabel);
 
-        this.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
 
         // Change Password Setting
         JPanel changePasswordPanel = new JPanel();
@@ -21,9 +22,9 @@ public class SettingsPanel extends JPanel {
         changePasswordPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         JButton changePasswordButton = new JButton("Change");
         changePasswordPanel.add(changePasswordButton);
-        this.add(changePasswordPanel);
+        panel.add(changePasswordPanel);
 
-        this.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         // Notification Preferences Setting
         JPanel notificationPanel = new JPanel();
@@ -31,11 +32,18 @@ public class SettingsPanel extends JPanel {
         notificationPanel.add(new JLabel("Email Notifications: "));
         JCheckBox emailNotificationsCheckBox = new JCheckBox();
         notificationPanel.add(emailNotificationsCheckBox);
-        this.add(notificationPanel);
+        panel.add(notificationPanel);
 
         // Add more settings as needed
-        this.add(Box.createVerticalGlue()); // Pushes everything up, adds space at the bottom
+        panel.add(Box.createVerticalGlue()); // Pushes everything up, adds space at the bottom
 
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBorder(null);
+
+        this.setLayout(new BorderLayout());
+        this.add(scrollPane, BorderLayout.CENTER);
         this.setVisible(true);
     }
 }
