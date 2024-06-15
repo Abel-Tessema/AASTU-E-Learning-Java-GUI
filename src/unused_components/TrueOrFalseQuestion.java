@@ -1,6 +1,6 @@
-package components;
+package unused_components;
 
-import models.Question;
+import unused_models.Question;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class TrueOrFalseQuestion extends JPanel {
     public TrueOrFalseQuestion(Question question) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel questionLabel = new JLabel(question.getId() + ") " + question.getQuestionText());
+        JLabel questionLabel = new JLabel(Question.currentId + ") " + question.getQuestionText());
 
         JRadioButton trueChoice = new JRadioButton("True");
         JRadioButton falseChoice = new JRadioButton("False");

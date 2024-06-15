@@ -1,6 +1,7 @@
-package components;
+package unused_components;
 
-import models.Question;
+import components.CustomTextAreaPanel;
+import unused_models.Question;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ public class ShortAnswerQuestion extends JPanel {
     public ShortAnswerQuestion(Question question) {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel questionLabel = new JLabel(question.getId() + ") " + question.getQuestionText());
+        JLabel questionLabel = new JLabel(Question.currentId + ") " + question.getQuestionText());
         questionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         CustomTextAreaPanel textAreaPanel = new CustomTextAreaPanel(400, 100);
