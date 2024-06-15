@@ -1,7 +1,7 @@
 package screens;
 
 import components.Window;
-import controllers.AuthController;
+import controllers.StudentController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ public class LoginScreen extends JPanel {
     private final JTextField emailField;
     private final JPasswordField passwordField;
     private final JButton logInButton;
-    private final AuthController controller;
+    private final StudentController controller;
     private final Window window;
 
     public LoginScreen(Window window) {
@@ -41,7 +41,7 @@ public class LoginScreen extends JPanel {
         logInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         logInButton.addActionListener(event -> logIn());
 
-        controller = new AuthController();
+        controller = new StudentController();
 
         emailPanel.setLayout(new BoxLayout(emailPanel, BoxLayout.X_AXIS));
         emailPanel.add(emailLabel);
