@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CustomTextFieldPanel extends JPanel {
-    public CustomTextFieldPanel() {
+    public CustomTextFieldPanel(int width, int height) {
         JTextField textField = new JTextField();
         textField.setAlignmentX(Component.LEFT_ALIGNMENT);
-        Dimension textFieldSize = new Dimension(300, 40);
+        Dimension textFieldSize = new Dimension(width, height);
 
         JScrollPane textFieldScrollPane = new JScrollPane(textField);
         textFieldScrollPane.setPreferredSize(textFieldSize); // Set the same preferred size for the scroll pane
