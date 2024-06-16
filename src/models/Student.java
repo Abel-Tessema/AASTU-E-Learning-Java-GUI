@@ -1,7 +1,7 @@
 package models;
 
 public class Student {
-    private String id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -17,7 +17,7 @@ public class Student {
     public Student() {}
 
     public Student(
-            String id,
+            int id,
             String firstName,
             String lastName,
             String email,
@@ -40,7 +40,7 @@ public class Student {
 
     // ===== Getters =====
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -78,7 +78,7 @@ public class Student {
 
     // ===== Setters =====
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
