@@ -19,10 +19,10 @@ public class DrawerPanel extends JPanel {
         JButton examsButton = new JButton("Exams");
         JButton settingsButton = new JButton("Settings");
 
-        coursesButton.addActionListener(e -> showPanel("Courses"));
-        assignmentsButton.addActionListener(e -> showPanel("Assignments"));
-        examsButton.addActionListener(e -> showPanel("Exams"));
-        settingsButton.addActionListener(e -> showPanel("Settings"));
+        coursesButton.addActionListener(e -> showPanel("CoursesPanel"));
+        assignmentsButton.addActionListener(e -> showPanel("AssignmentsPanel"));
+        examsButton.addActionListener(e -> showPanel("ExamsPanel"));
+        settingsButton.addActionListener(e -> showPanel("SettingsPanel"));
 
         JButton[] buttons = {coursesButton, assignmentsButton, examsButton, settingsButton};
 
