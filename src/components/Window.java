@@ -1,5 +1,6 @@
 package components;
 
+import screens.DashboardScreen;
 import screens.LoginScreen;
 
 import javax.swing.*;

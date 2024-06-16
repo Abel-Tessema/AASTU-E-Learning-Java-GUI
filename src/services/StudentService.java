@@ -125,6 +125,7 @@ public class StudentService {
             }
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new DatabaseConnectionException();
         }
     }
