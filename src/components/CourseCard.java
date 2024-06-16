@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class CourseCard extends JPanel {
     public CourseCard(Course course) {
-        Image courseImage = course.getImage();
+        Image courseImage = new ImageIcon(course.getImagePath()).getImage();
         Image scaledImage = courseImage.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
