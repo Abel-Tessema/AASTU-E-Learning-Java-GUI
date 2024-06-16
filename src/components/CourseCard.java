@@ -1,12 +1,23 @@
 package components;
 
+import layouts.CourseDetailsPanel;
 import models.Course;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CourseCard extends JPanel {
-    public CourseCard(Course course) {
+    private final Course course;
+    private final JPanel mainContentPanel;
+    private final CardLayout cardLayout;
+
+    public CourseCard(Course course, JPanel mainContentPanel, CardLayout cardLayout) {
+        this.course = course;
+        this.mainContentPanel = mainContentPanel;
+        this.cardLayout = cardLayout;
+
         Image courseImage = new ImageIcon(course.getImagePath()).getImage();
         Image scaledImage = courseImage.getScaledInstance(180, 150, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -38,6 +49,18 @@ public class CourseCard extends JPanel {
         this.add(courseCodeLabel);
         this.add(Box.createVerticalGlue());
 
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showCourseDetailsPanel();
+            }
+        });
         this.setVisible(true);
+    }
+
+    private void showCourseDetailsPanel() {
+        CourseDetailsPanel courseDetailsPanel = new CourseDetailsPanel(course, mainContentPanel, cardLayout);
+        mainContentPanel.add(courseDetailsPanel, "CourseDetailsPanel");
+        cardLayout.show(mainContentPanel, "CourseDetailsPanel");
     }
 }
