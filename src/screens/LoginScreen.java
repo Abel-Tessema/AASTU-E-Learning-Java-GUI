@@ -79,12 +79,14 @@ public class LoginScreen extends JPanel {
         String email = this.emailField.getText();
         String password = new String(this.passwordField.getPassword());
 
-        if (controller.logIn(email, password)) {
+        String loginError = controller.logIn(email, password);
+
+        if (loginError.isEmpty()) {
             window.showScreen(new DashboardScreen(window));
         } else {
             JOptionPane.showMessageDialog(
                     this,
-                    "Invalid email or password. Please try again.",
+                    loginError,
                     "Error",
                     JOptionPane.ERROR_MESSAGE
             );
