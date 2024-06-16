@@ -6,7 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AssignmentsPanel extends JPanel {
-    public AssignmentsPanel() {
+    private final JPanel mainContentPanel;
+    private final CardLayout cardLayout;
+
+    public AssignmentsPanel(JPanel mainContentPanel, CardLayout cardLayout) {
+        this.mainContentPanel = mainContentPanel;
+        this.cardLayout = cardLayout;
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));

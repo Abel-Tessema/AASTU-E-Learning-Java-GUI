@@ -26,9 +26,9 @@ public class DashboardScreen extends JPanel {
         this.add(mainContentPanel, BorderLayout.CENTER);
 
         // Adding content panels to the CardLayout
-        mainContentPanel.add(new CoursesPanel(), "Courses");
-        mainContentPanel.add(new AssignmentsPanel(), "Assignments");
-        mainContentPanel.add(new ExamsPanel(), "Exams");
-        mainContentPanel.add(new SettingsPanel(), "Settings");
+        mainContentPanel.add(new CoursesPanel(mainContentPanel, cardLayout), "Courses");
+        mainContentPanel.add(new AssignmentsPanel(mainContentPanel, cardLayout), "Assignments");
+        mainContentPanel.add(new ExamsPanel(mainContentPanel, cardLayout), "Exams");
+        mainContentPanel.add(new SettingsPanel(window), "Settings");
     }
 }
