@@ -163,7 +163,7 @@ public class SettingsPanel extends JPanel {
         );
 
         if (logOut == JOptionPane.YES_OPTION) {
-            AppContext.getInstance().setLoggedInStudent(null);
+            controller.logOut();
             window.showScreen(new LoginScreen(window));
         }
     }

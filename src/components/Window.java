@@ -1,12 +1,16 @@
 package components;
 
+import controllers.StudentController;
+import models.Student;
 import screens.DashboardScreen;
 import screens.LoginScreen;
+import util.AppContext;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Window extends JFrame {
+    private final StudentController controller = new StudentController();
     private JPanel mainPanel;
 
     public Window() {
@@ -19,7 +23,15 @@ public class Window extends JFrame {
         mainPanel = new JPanel(new CardLayout());
 
         this.add(mainPanel);
-        showScreen(new LoginScreen(this));
+
+        Student loggedInStudent = controller.loadLoggedInStudent();
+
+        if (loggedInStudent != null) {
+            AppContext.getInstance().setLoggedInStudent(loggedInStudent);
+            this.showScreen(new DashboardScreen(this));
+        } else {
+            this.showScreen(new LoginScreen(this));
+        }
         this.setVisible(true);
     }
 

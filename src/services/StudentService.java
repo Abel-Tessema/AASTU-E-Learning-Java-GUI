@@ -9,6 +9,7 @@ import models.SubmittedExam;
 import util.AppContext;
 import util.Database;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +48,30 @@ public class StudentService {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DatabaseConnectionException();
+        }
+    }
+
+    public void saveLoggedInStudent() {
+        Student student = AppContext.getInstance().getLoggedInStudent();
+
+        try (
+                FileOutputStream fileOutputStream =
+                        new FileOutputStream("database/logged_in_user/logged_in_student.dat");
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)
+        ) {
+            objectOutputStream.writeObject(student);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Student loadLoggedInStudent() {
+        try (FileInputStream fis = new FileInputStream("database/logged_in_user/logged_in_student.dat");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            return (Student) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -127,6 +152,13 @@ public class StudentService {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DatabaseConnectionException();
+        }
+    }
+
+    public void logOut() {
+        File file = new File("database/logged_in_user/logged_in_student.dat");
+        if (file.exists()) {
+            file.delete();
         }
     }
 }

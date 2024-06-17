@@ -16,18 +16,20 @@ public class StudentController {
         try {
             student = studentService.logIn(email, password);
             AppContext.getInstance().setLoggedInStudent(student);
+            studentService.saveLoggedInStudent();
             return "";
         } catch (DatabaseConnectionException | InvalidEmailOrPasswordException e) {
             return e.getMessage();
         }
-//        if (student != null) {
-//            return true;
-//        }
-//        return email.equals("student") && password.equals("1234");
     }
 
     public void logOut() {
         AppContext.getInstance().setLoggedInStudent(null);
+        studentService.logOut();
+    }
+
+    public Student loadLoggedInStudent() {
+        return studentService.loadLoggedInStudent();
     }
 
     public String changePassword(String oldPassword, String newPassword, String confirmPassword) {
