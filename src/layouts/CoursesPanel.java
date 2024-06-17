@@ -48,12 +48,15 @@ public class CoursesPanel extends JPanel {
     private void addCourseCards() {
         String fetchCoursesError = controller.fetchAllCourses();
 
-        if (fetchCoursesError.isEmpty()) {
+        if (fetchCoursesError.isEmpty() && !controller.getCourses().isEmpty()) {
             courseCardsPanel.removeAll();
             for (Course course : controller.getCourses()) {
                 CourseCard courseCard = new CourseCard(course, mainContentPanel, cardLayout);
                 courseCardsPanel.add(courseCard);
             }
+        } else if (fetchCoursesError.isEmpty()) {
+            courseCardsPanel.removeAll();
+            courseCardsPanel.add(new JLabel("No courses available."));
         } else {
             courseCardsPanel.removeAll();
             JButton refreshButton = new JButton("Refresh");

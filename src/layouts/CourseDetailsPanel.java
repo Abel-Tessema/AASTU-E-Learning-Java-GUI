@@ -72,6 +72,14 @@ public class CourseDetailsPanel extends JPanel {
 
         materialsPanel = new JPanel();
         materialsPanel.setLayout(new BoxLayout(materialsPanel, BoxLayout.Y_AXIS));
+        materialsPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JLabel materialsLabel = new JLabel("Materials");
+        materialsLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        materialsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        panel.add(materialsLabel);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         addMaterials();
 
@@ -80,7 +88,10 @@ public class CourseDetailsPanel extends JPanel {
 
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> cardLayout.show(mainContentPanel, "CoursesPanel"));
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(backButton);
+
+        panel.add(Box.createVerticalGlue());
 
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -95,11 +106,15 @@ public class CourseDetailsPanel extends JPanel {
     private void addMaterials() {
         String fetchMaterialsError = controller.fetchAllMaterials(course.getId());
 
-        if (fetchMaterialsError.isEmpty()) {
+        if (fetchMaterialsError.isEmpty() && !controller.getMaterials().isEmpty()) {
             materialsPanel.removeAll();
             for (Material material : controller.getMaterials()) {
                 materialsPanel.add(new MaterialLabel(material));
             }
+            materialsPanel.add(Box.createVerticalGlue());
+        } else if (controller.getMaterials().isEmpty()) {
+            materialsPanel.removeAll();
+            materialsPanel.add(new JLabel("No materials available."));
         } else {
             materialsPanel.removeAll();
             JButton refreshButton = new JButton("Refresh");
